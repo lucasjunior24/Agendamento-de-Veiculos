@@ -6,7 +6,8 @@ export default {
         background_secondary: '#FFF',
 
         text: '#7A7A80',
-        text_detail: '#AEARB3',
+        text_detail: '#AEAEB3',
+        title: '#47474D',
 
         line: '#EB3BF0',
 
