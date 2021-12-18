@@ -1,6 +1,15 @@
 import React from 'react';
+
+import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
+
+import speedSvg from '../../assets/speed.svg';
+import accelerationSvg from '../../assets/acceleration.svg';
+import forceSvg from '../../assets/force.svg';
+import gasolineSvg from '../../assets/gasoline.svg';
+import exchangeSvg from '../../assets/exchange.svg';
+import peopleSvg from '../../assets/people.svg';
 
 import { 
     Container, 
@@ -14,7 +23,8 @@ import {
     Rent,
     Period,
     Price,
-    About
+    About, 
+    Accessories
 } from './styles';
 
 export function CarDetails() {
@@ -42,6 +52,15 @@ export function CarDetails() {
                         <Price>R$ 549,90</Price>
                     </Rent>
                 </Details>
+
+                <Accessories>
+                    <Accessory name='380Km/h' icon={speedSvg} />
+                    <Accessory name='3.2s' icon={accelerationSvg} />
+                    <Accessory name='800 HP' icon={forceSvg} />
+                    <Accessory name='Gasolina' icon={gasolineSvg} />
+                    <Accessory name='Auto' icon={exchangeSvg} />
+                    <Accessory name='2 pessoas' icon={peopleSvg} />
+                </Accessories>
 
                 <About>
                     Lamborghini é uma fabricante italiana de automóveis desportivos de luxo e de alto desempenho criada originalmente para competir com a Ferrari com sede no município de Sant'Agata Bolognese.
