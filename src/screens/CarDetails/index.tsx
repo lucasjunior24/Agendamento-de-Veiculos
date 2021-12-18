@@ -24,8 +24,10 @@ import {
     Period,
     Price,
     About, 
-    Accessories
+    Accessories,
+    Footer
 } from './styles';
+import { Button } from '../../components/Button';
 
 export function CarDetails() {
     return (
@@ -65,7 +67,19 @@ export function CarDetails() {
                 <About>
                     Lamborghini é uma fabricante italiana de automóveis desportivos de luxo e de alto desempenho criada originalmente para competir com a Ferrari com sede no município de Sant'Agata Bolognese.
                 </About>
+
+                <About>
+                    Lamborghini é uma fabricante italiana de automóveis desportivos de luxo e de alto desempenho criada originalmente para competir com a Ferrari com sede no município de Sant'Agata Bolognese.
+                </About>
+
+                <About>
+                    Lamborghini é uma fabricante italiana de automóveis desportivos de luxo e de alto desempenho criada originalmente para competir com a Ferrari com sede no município de Sant'Agata Bolognese.
+                </About>
             </Content>
+
+            <Footer>
+                <Button title='Confirmar ' />
+            </Footer>
         </Container>
     );
 }
