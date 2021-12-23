@@ -13,8 +13,12 @@ import {
     RentalPeriod,
     DateInfo,
     DateTitle,
-    DateValue
+    DateValue,
+    Content,
+    Footer
  } from './styles';
+import { Button } from '../../components/Button';
+import Calendar from '../../components/Calendar';
 
 
 export function Scheduling() {
@@ -50,8 +54,17 @@ export function Scheduling() {
                         <DateValue selected={false}></DateValue>
                     </DateInfo>
                 </RentalPeriod>
-
             </Header>
+
+            <Content>
+                <Calendar />
+            </Content>
+
+            <Footer>
+                <Button 
+                    title='Confirmar'
+                    />
+            </Footer>
         </Container>
     );
 }
