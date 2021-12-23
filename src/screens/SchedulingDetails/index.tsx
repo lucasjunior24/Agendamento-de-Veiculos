@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { Feather } from '@expo/vector-icons';
+import { RFValue } from 'react-native-responsive-fontsize';
+
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -23,13 +26,26 @@ import {
     Rent,
     Period,
     Price,
-    About, 
     Accessories,
-    Footer
+    Footer,
+    RentalPeriod,
+    CalendarIcon,
+    DateInfo,
+    DateTitle,
+    DateValue,
+    RentalPrice,
+    RentalPriceLabel,
+    RentalPriceDetails,
+    RentalPriceQuota,
+    RentalPriceTotal
 } from './styles';
-import { Button } from '../../components/Button';
 
-export function CarDetails() {
+import { Button } from '../../components/Button';
+import { useTheme } from 'styled-components';
+
+
+export function SchedulingDetails() {
+    const theme = useTheme();
     return (
         <Container>
             <Header>
@@ -64,9 +80,39 @@ export function CarDetails() {
                     <Accessory name='2 pessoas' icon={peopleSvg} />
                 </Accessories>
 
-                <About>
-                    Lamborghini é uma fabricante italiana de automóveis desportivos de luxo e de alto desempenho criada originalmente para competir com a Ferrari com sede no município de Sant'Agata Bolognese.
-                </About>
+                <RentalPeriod>
+                    <CalendarIcon>
+                        <Feather 
+                            name='calendar'
+                            size={RFValue(24)}
+                            color={theme.colors.shape}
+                        />
+                    </CalendarIcon>
+
+                    <DateInfo>
+                        <DateTitle>DE</DateTitle>
+                        <DateValue>10/12/2021</DateValue>
+                    </DateInfo>
+
+                    <Feather 
+                            name='chevron-right'
+                            size={RFValue(10)}
+                            color={theme.colors.text}
+                        />
+
+                    <DateInfo>
+                        <DateTitle>DE</DateTitle>
+                        <DateValue>10/12/2021</DateValue>
+                    </DateInfo>
+                </RentalPeriod>
+
+                <RentalPrice>
+                    <RentalPriceLabel>TOTAL</RentalPriceLabel>
+                    <RentalPriceDetails>
+                        <RentalPriceQuota>RS 580 3x diárias</RentalPriceQuota>
+                        <RentalPriceTotal>RS 2.900</RentalPriceTotal>
+                    </RentalPriceDetails>
+                </RentalPrice>
             </Content>
 
             <Footer>
