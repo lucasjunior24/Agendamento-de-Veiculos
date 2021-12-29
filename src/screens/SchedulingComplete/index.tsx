@@ -15,7 +15,6 @@ import {
 } from './styles';
 import { ConfirmButton } from '../../components/ConfirmButton';
 
-
 export function SchedulingComplete() {
     const { width } = useWindowDimensions(); 
 
