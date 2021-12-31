@@ -12,12 +12,12 @@ export const Container = styled.View`
 `;
 export const Header = styled.View`
     width: 100%;
-    height: 325px;
+    height: 375px;
     background-color: ${({ theme }) => theme.colors.header};
 
     justify-content: center;
-    padding: 20px;
-    padding-top: ${getStatusBarHeight() + 50}px;
+    padding: 10px;
+    padding-top: ${getStatusBarHeight() + 40}px;
 `;
 
 export const Title = styled.Text`
@@ -47,7 +47,7 @@ export const DateTitle = styled.Text`
 `;
 
 export const DateValue = styled.Text<DateValueProps>`
-    font-size: ${RFValue(15)}px;
+    font-size: ${RFValue(14)}px;
     font-family: ${({ theme }) => theme.fonts.primary_500};
     color: ${({ theme }) => theme.colors.shape};
 
