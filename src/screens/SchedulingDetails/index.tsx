@@ -1,19 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
-
-import speedSvg from '../../assets/speed.svg';
-import accelerationSvg from '../../assets/acceleration.svg';
-import forceSvg from '../../assets/force.svg';
-import gasolineSvg from '../../assets/gasoline.svg';
-import exchangeSvg from '../../assets/exchange.svg';
-import peopleSvg from '../../assets/people.svg';
 
 import { 
     Container, 
@@ -43,20 +36,62 @@ import {
 
 import { Button } from '../../components/Button';
 import { useTheme } from 'styled-components';
+import { CarDTO } from '../../dtos/CarDTO';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { format } from 'date-fns';
+import { getPlatformDate } from '../../utils/getPlatformDate';
+import { api } from '../../services/api';
+import { Alert } from 'react-native';
 
+interface Params {
+    car: CarDTO;
+    dates: string[];
+}
+
+interface RentalPeriod {
+    start: string;
+    end: string;
+}
 
 export function SchedulingDetails() {
+    const [rentalPeriod, setRendalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
+
     const theme = useTheme();
-
     const navigation = useNavigation();
-    
-    function handleConfirmRental() {
-        navigation.navigate('SchedulingComplete');
-    }
+    const route = useRoute();
+    const { car, dates } = route.params as Params;
 
+    const rentalTotal = Number(dates.length * car.rent.price);
+    
     function handleBack() {
         navigation.goBack();
     }
+
+    async function handleConfirmRental() {
+        const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
+        
+        // novas datas 
+        const unavailable_dates = [
+            ...schedulesByCar.data.unavailable_dates,
+            ...dates,
+        ];
+
+        api.put(`/schedules_bycars/${car.id}`, {
+            id: car.id,
+            unavailable_dates
+        })
+        .then(() => 
+            navigation.navigate('SchedulingComplete'))
+        .catch(() => Alert.alert('Não foi possivel confirmar o agendamento.'))
+    }
+
+    useEffect(() => {
+        setRendalPeriod({
+            start: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+            end: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
+        })
+    }, [])
+
     return (
         <Container>
             <Header>
@@ -65,30 +100,32 @@ export function SchedulingDetails() {
 
             <CarImages>
                 <ImageSlider 
-                    imagesUrl={['https://img1.gratispng.com/20171220/kiq/audi-png-car-image-5a3b1f1eb47de9.9104985015138240307393.jpg']} 
+                    imagesUrl={car.photos} 
                 />
             </CarImages>
 
             <Content>
                 <Details>
                     <Description>
-                        <Brand>Lamborghini</Brand>
-                        <Name>Huracan</Name>
+                        <Brand>{car.brand}</Brand>
+                        <Name>{car.name}</Name>
                     </Description>
 
                     <Rent>
-                        <Period>Ao Dia</Period>
-                        <Price>R$ 549,90</Price>
+                        <Period>{car.rent.period}</Period>
+                        <Price>R$ {car.rent.price}</Price>
                     </Rent>
                 </Details>
 
                 <Accessories>
-                    <Accessory name='380Km/h' icon={speedSvg} />
-                    <Accessory name='3.2s' icon={accelerationSvg} />
-                    <Accessory name='800 HP' icon={forceSvg} />
-                    <Accessory name='Gasolina' icon={gasolineSvg} />
-                    <Accessory name='Auto' icon={exchangeSvg} />
-                    <Accessory name='2 pessoas' icon={peopleSvg} />
+                    {
+                        car.accessories.map(accessory => (
+                            <Accessory
+                                key={accessory.type}
+                                name={accessory.name} 
+                                icon={getAccessoryIcon(accessory.type)} />
+                        ))
+                    }
                 </Accessories>
 
                 <RentalPeriod>
@@ -102,7 +139,7 @@ export function SchedulingDetails() {
 
                     <DateInfo>
                         <DateTitle>DE</DateTitle>
-                        <DateValue>10/12/2021</DateValue>
+                        <DateValue>{rentalPeriod.start}</DateValue>
                     </DateInfo>
 
                     <Feather 
@@ -113,21 +150,25 @@ export function SchedulingDetails() {
 
                     <DateInfo>
                         <DateTitle>DE</DateTitle>
-                        <DateValue>10/12/2021</DateValue>
+                        <DateValue>{rentalPeriod.end}</DateValue>
                     </DateInfo>
                 </RentalPeriod>
 
                 <RentalPrice>
                     <RentalPriceLabel>TOTAL</RentalPriceLabel>
                     <RentalPriceDetails>
-                        <RentalPriceQuota>RS 580 3x diárias</RentalPriceQuota>
-                        <RentalPriceTotal>RS 2.900</RentalPriceTotal>
+                        <RentalPriceQuota>{`RS ${car.rent.price}x${dates.length} diárias`}</RentalPriceQuota>
+                        <RentalPriceTotal>RS {rentalTotal}</RentalPriceTotal>
                     </RentalPriceDetails>
                 </RentalPrice>
             </Content>
 
             <Footer>
-                <Button title='Alugar agora' color={theme.colors.sucess} onPress={handleConfirmRental} />
+                <Button
+                  title='Alugar agora' 
+                  color={theme.colors.sucess} 
+                  onPress={handleConfirmRental} 
+                />
             </Footer>
         </Container>
     );

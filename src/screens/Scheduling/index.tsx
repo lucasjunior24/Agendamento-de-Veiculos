@@ -47,8 +47,8 @@ export function Scheduling() {
     
     const theme = useTheme();
     const navigation = useNavigation();
+    
     const route = useRoute();
-
     const { car } = route.params as Params;
 
     function handleBack() {
