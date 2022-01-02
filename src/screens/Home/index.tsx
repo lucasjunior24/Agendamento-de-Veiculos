@@ -75,7 +75,7 @@ export function Home() {
                 />
             }
 
-            <MyCarsButton>
+            <MyCarsButton onPress={handleOpenMyCars}>
                 <Ionicons 
                     name="ios-car-sport"
                     size={32}

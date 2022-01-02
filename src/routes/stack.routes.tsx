@@ -10,7 +10,6 @@ import { MyCars } from '../screens/MyCars';
 
 const { Screen, Navigator } = createStackNavigator();
 
-
 export function StackRoutes() {
     return (
         <Navigator headerMode='none' >
