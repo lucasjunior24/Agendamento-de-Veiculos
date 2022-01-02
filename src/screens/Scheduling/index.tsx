@@ -4,7 +4,6 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from 'styled-components';
 import { StatusBar, Alert } from 'react-native';
 
-import { BackButton } from '../../components/BackButton';
 import ArrowSvg from '../../assets/arrow.svg';
 import { getPlatformDate } from '../../utils/getPlatformDate';
 
@@ -21,6 +20,7 @@ import {
  } from './styles';
 
 import { Button } from '../../components/Button';
+import { BackButton } from '../../components/BackButton';
 
 import { 
     Calendar, 
@@ -28,6 +28,7 @@ import {
     MarkedDateProps, 
     generateInterval
 } from '../../components/Calendar';
+
 import { format } from 'date-fns';
 import { CarDTO } from '../../dtos/CarDTO';
 

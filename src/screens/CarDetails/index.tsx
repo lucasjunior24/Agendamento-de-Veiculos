@@ -28,6 +28,7 @@ import {
 
 import { Button } from '../../components/Button';
 import { CarDTO } from '../../dtos/CarDTO';
+import { StatusBar } from 'react-native';
 
 interface Params {
     car: CarDTO;
@@ -50,6 +51,9 @@ export function CarDetails() {
     return (
         <Container>
             <Header>
+                <StatusBar 
+                    barStyle='dark-content'
+                />
                 <BackButton onPress={handleBack} />
             </Header>
 

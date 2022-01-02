@@ -12,16 +12,16 @@ export const Container = styled.View`
 `;
 export const Header = styled.View`
     width: 100%;
-    height: 375px;
+    height: 355px;
     background-color: ${({ theme }) => theme.colors.header};
 
     justify-content: center;
-    padding: 10px;
-    padding-top: ${getStatusBarHeight() + 40}px;
+    padding: 25px;
+    padding-top: ${getStatusBarHeight() + 30}px;
 `;
 
 export const Title = styled.Text`
-    font-size: ${RFValue(34)}px;
+    font-size: ${RFValue(30)}px;
     font-family: ${({ theme }) => theme.fonts.secondary_600};
     color: ${({ theme }) => theme.colors.shape};
 
