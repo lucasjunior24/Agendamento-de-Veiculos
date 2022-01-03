@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from 'styled-components';
-import { StatusBar, Alert } from 'react-native';
+import { StatusBar } from 'react-native';
 
 import ArrowSvg from '../../assets/arrow.svg';
 import { getPlatformDate } from '../../utils/getPlatformDate';
@@ -57,14 +57,11 @@ export function Scheduling() {
     }
     
     function handleConfirmRental() {
-        if(!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-            Alert.alert('Selecione o intervalo para alugar.')
-        } else {
-            navigation.navigate('SchedulingDetails', {
-                car,
-                dates: Object.keys(markedDates)
-            })
-        }
+        navigation.navigate('SchedulingDetails', {
+            car,
+            dates: Object.keys(markedDates)
+        })
+        
     }
 
     function handleChangeDate(date: DayProps) {
@@ -136,6 +133,7 @@ export function Scheduling() {
                 <Button 
                     title='Confirmar'
                     onPress={handleConfirmRental}
+                    enabled={!!rentalPeriod.startFormatted}
                 />
             </Footer>
         </Container>
