@@ -1,19 +1,9 @@
 import styled from "styled-components/native";
 import { TextInput } from 'react-native';
 import { RFValue } from "react-native-responsive-fontsize";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
-
-interface ButtonProps extends RectButtonProps {
-  color?: string;
-}
-
-interface ButtonTextProps {
-  light: boolean;
-}
 
 export const Container = styled.View`
   flex-direction: row;
-  margin-bottom: 8px;
 `;
 
 export const IconContainer = styled.View`
