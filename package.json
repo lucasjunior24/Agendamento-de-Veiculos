@@ -20,6 +20,7 @@
     "expo": "~41.0.1",
     "expo-app-loading": "^1.2.1",
     "expo-font": "~9.1.0",
+    "expo-modules-core": "^0.6.5",
     "expo-splash-screen": "~0.10.2",
     "expo-updates": "~0.5.4",
     "react": "16.13.1",
@@ -36,7 +37,7 @@
     "react-native-unimodules": "~0.13.3",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.3.3",
-    "yup": "^0.32.11"
+    "yup": "0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
