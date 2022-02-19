@@ -6,13 +6,13 @@ import { BorderlessButton } from "react-native-gesture-handler";
 
 import { 
   Container, 
-  IconContainer,
-  InputText
-} from './styles';
+  IconContainer, 
+  InputText 
+} from './styles'; 
 
-interface Props extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>['name'];
-  value?: string;
+interface Props extends TextInputProps { 
+  iconName: React.ComponentProps<typeof Feather>['name']; 
+  value?: string; 
 }
 
 export function PasswordInput({
@@ -38,8 +38,8 @@ export function PasswordInput({
   }
 
   return (
-    <Container isFocused={isFocused}>
-      <IconContainer>
+    <Container>
+      <IconContainer isFocused={isFocused}>
         <Feather 
           name={iconName}
           size={24}
@@ -50,14 +50,15 @@ export function PasswordInput({
         {...rest} 
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-       secureTextEntry={isPasswordVisible} 
+        secureTextEntry={isPasswordVisible} 
+        isFocused={isFocused}
       />
 
-      <BorderlessButton onPress={handlePasswordVisibilityChange}>
-        <IconContainer>
+      <BorderlessButton onPress={handlePasswordVisibilityChange}> 
+        <IconContainer isFocused={isFocused}> 
           <Feather 
-            name={isPasswordVisible ? 'eye' : 'eye-off'}
-            size={24}
+            name={isPasswordVisible ? 'eye' : 'eye-off'} 
+            size={24} 
             color={theme.colors.text_detail}
           />
         </IconContainer>
