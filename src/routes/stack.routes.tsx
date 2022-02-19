@@ -14,18 +14,18 @@ const { Screen, Navigator } = createStackNavigator();
 
 export function StackRoutes() {
     return (
-        <Navigator headerMode='none' initialRouteName='SignIn' >
+        <Navigator headerMode='none' initialRouteName='SignUpFirstStep' >
           <Screen
-              name='SignIn'
-              component={SignIn}    
+            name='SignIn'
+            component={SignIn}    
           />
           <Screen
-              name='SignUpFirstStep'
-              component={SignUpFirstStep}    
+            name='SignUpFirstStep'
+            component={SignUpFirstStep}    
           />
             <Screen
-                name='Home'
-                component={Home}    
+              name='Home'
+              component={Home}    
             />
             <Screen
                 name='CarDetails'
