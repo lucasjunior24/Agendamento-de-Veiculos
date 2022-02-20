@@ -36,6 +36,7 @@ interface Params {
 export function SignUpSecondStep() {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  
   const navigation = useNavigation();
   const route = useRoute();
   const theme = useTheme();
