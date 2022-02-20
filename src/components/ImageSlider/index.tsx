@@ -10,10 +10,7 @@ import {
 } from "../ImageSlider/styles";
 
 interface Props {
-  imagesUrl: {
-    id: string;
-    photo: string;
-  }[];
+    imagesUrl: string[];
 }
 
 interface ChangeImageProps {
@@ -43,12 +40,12 @@ export function ImageSlider({ imagesUrl }: Props) {
             </ImageIndexes>
             <FlatList
               data={imagesUrl}
-              keyExtractor={item => item.id}
+              keyExtractor={key => key}
               renderItem={({ item }) => (
                 <CarImageWrapper>
                   <CarImage 
                     source={{ 
-                      uri: item.photo                 
+                      uri: item              
                     }}
                     resizeMode="contain"            
                   />
