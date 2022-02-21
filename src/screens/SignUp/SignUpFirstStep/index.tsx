@@ -31,8 +31,6 @@ export function SignUpFirstStep() {
   const [driverLicense, setDriverLicense] = useState('');
 
   const navigation = useNavigation();
-  const { user } = useAuth();
-  console.log("USUARIO AUTENTICADO", user);
 
   function handleBack() {
     navigation.goBack();

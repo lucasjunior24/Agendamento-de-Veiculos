@@ -15,7 +15,7 @@ const { Screen, Navigator } = createStackNavigator();
 
 export function StackRoutes() {
   return (
-    <Navigator headerMode='none' initialRouteName='SignIn' >
+    <Navigator headerMode='none' initialRouteName='Home' >
       <Screen
         name='SignIn'
         component={SignIn}
