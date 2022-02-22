@@ -7,27 +7,12 @@ import { Scheduling } from '../screens/Scheduling';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { Confirmation } from '../screens/Confirmation';
 import { MyCars } from '../screens/MyCars';
-import { SignIn } from '../screens/SignIn';
-import { SignUpFirstStep } from '../screens/SignUp/SignUpFirstStep';
-import { SignUpSecondStep } from '../screens/SignUp/SignUpSecondStep';
 
 const { Screen, Navigator } = createStackNavigator();
 
-export function StackRoutes() {
+export function AppStackRoutes() {
   return (
     <Navigator headerMode='none' initialRouteName='Home' >
-      <Screen
-        name='SignIn'
-        component={SignIn}
-      />
-      <Screen
-        name='SignUpSecondStep'
-        component={SignUpSecondStep}
-      />
-      <Screen
-        name='SignUpFirstStep'
-        component={SignUpFirstStep}
-      />
       <Screen
         name='Home'
         component={Home}

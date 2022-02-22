@@ -30,7 +30,7 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text}
 `;
 
-export const CarList = styled(FlatList as new () => FlatList<CarDTO>)
+export const CarList = styled(FlatList as new () => FlatList<CarDTO[]>)
 .attrs({
   contentContainerStyle: {
     padding: 24
