@@ -9,21 +9,21 @@ import { ImageSlider } from '../../components/ImageSlider';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 
-import { 
-    Container, 
-    Header, 
-    CarImages,
-    Content,
-    Details,
-    Description,
-    Brand,
-    Name,
-    Rent,
-    Period,
-    Price,
-    About, 
-    Accessories,
-    Footer
+import {
+  Container,
+  Header,
+  CarImages,
+  Content,
+  Details,
+  Description,
+  Brand,
+  Name,
+  Rent,
+  Period,
+  Price,
+  About,
+  Accessories,
+  Footer
 } from './styles';
 
 import { Button } from '../../components/Button';
@@ -31,66 +31,66 @@ import { CarDTO } from '../../dtos/CarDTO';
 import { StatusBar } from 'react-native';
 
 interface Params {
-    car: CarDTO;
+  car: CarDTO;
 }
 
 export function CarDetails() {
-    const navigation = useNavigation();
-    const route = useRoute();
+  const navigation = useNavigation();
+  const route = useRoute();
 
-    const { car } = route.params as Params;
-    
-    function handleConfirmRental() {
-        navigation.navigate('Scheduling', { car });
-    }
+  const { car } = route.params as Params;
 
-    function handleBack() {
-        navigation.goBack();
-    }
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling', { car });
+  }
 
-    return (
-        <Container>
-            <Header>
-                <StatusBar 
-                    barStyle='dark-content'
-                />
-                <BackButton onPress={handleBack} />
-            </Header>
+  function handleBack() {
+    navigation.goBack();
+  }
 
-            <CarImages>
-                <ImageSlider imagesUrl={car.photos} />
-            </CarImages>
+  return (
+    <Container>
+      <Header>
+        <StatusBar
+          barStyle='dark-content'
+        />
+        <BackButton onPress={handleBack} />
+      </Header>
 
-            <Content>
-                <Details>
-                    <Description>
-                        <Brand>{car.brand}</Brand>
-                        <Name>{car.name}</Name>
-                    </Description>
+      <CarImages>
+        <ImageSlider imagesUrl={car.photos} />
+      </CarImages>
 
-                    <Rent>
-                        <Period>{car.period}</Period>
-                        <Price>R$ {car.price}</Price>
-                    </Rent>
-                </Details>
+      <Content>
+        <Details>
+          <Description>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
+          </Description>
 
-                <Accessories>
-                    {
-                        car.accessories.map(accessory => (
-                            <Accessory
-                                key={accessory.type}
-                                name={accessory.name} 
-                                icon={getAccessoryIcon(accessory.type)} />
-                        ))
-                    }
-                </Accessories>
+          <Rent>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
+          </Rent>
+        </Details>
 
-                <About>{car.about}</About>
-            </Content>
+        <Accessories>
+          {
+            car.accessories.map(accessory => (
+              <Accessory
+                key={accessory.type}
+                name={accessory.name}
+                icon={getAccessoryIcon(accessory.type)} />
+            ))
+          }
+        </Accessories>
 
-            <Footer>
-                <Button title='Escolher período do aluguel' onPress={handleConfirmRental} />
-            </Footer>
-        </Container>
-    );
+        <About>{car.about}</About>
+      </Content>
+
+      <Footer>
+        <Button title='Escolher período do aluguel' onPress={handleConfirmRental} />
+      </Footer>
+    </Container>
+  );
 }
