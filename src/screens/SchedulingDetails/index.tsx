@@ -82,9 +82,7 @@ export function SchedulingDetails() {
         navigation.navigate('Confirmation', {
           nextScreenRoute: 'Home',
           title: 'Carro Alugado',
-          message: `Agora voce so precisa ir\n
-          até a concessionaria da RENTX\n
-          pegar seu automovel`
+          message: `Agora voce so precisa ir\naté a concessionaria da RENTX\npegar seu automovel`
         })
       })
       .catch(() => {
