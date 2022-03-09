@@ -21,7 +21,7 @@ import {
 } from './styles'
 
 import { CarDTO } from '../../dtos/CarDTO';
-import { api } from '../../services/api';
+import api from '../../services/api';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';

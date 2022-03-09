@@ -13,7 +13,7 @@ import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { Button } from '../../../components/Button';
 import { PasswordInput } from '../../../components/PasswordInput';
-import { api } from '../../../services/api';
+import api  from '../../../services/api';
 
 import {
   Container,
@@ -68,7 +68,8 @@ export function SignUpSecondStep() {
         message: `Agora é só fazer login\ne aproveitar`
       });
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error);
       Alert.alert('Opa', 'Não foi possivel cadastrar');
     });
 

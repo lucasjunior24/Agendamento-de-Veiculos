@@ -40,4 +40,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-// https://react-native.rocketseat.dev/android/windows

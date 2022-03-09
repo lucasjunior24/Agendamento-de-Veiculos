@@ -9,7 +9,7 @@ export default function Routes() {
   const { user } = useAuth();
   return (
     <NavigationContainer>
-      { user.id ? <AppTabRoutes /> : <AuthRoutes /> }
+      { user ? <AppTabRoutes /> : <AuthRoutes /> }
     </NavigationContainer>
   )
 }

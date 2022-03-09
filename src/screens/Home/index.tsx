@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { api } from "../../services/api";
+import api from "../../services/api";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'react-native';
