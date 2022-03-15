@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/core';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import { StatusBar } from 'react-native';
+
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 
 import { BackButton } from '../../components/BackButton';
+import { Input } from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
+import { useAuth } from '../../hooks/auth';
+
 import {
   Container,
   Header,
@@ -17,11 +28,14 @@ import {
   Content,
   Options,
   Option,
-  OptionTitle
+  OptionTitle,
+  Section
 } from './styles';
 
 export function Profile() {
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
+
+  const { user } = useAuth();
   const theme = useTheme();
   const navigation = useNavigation();
 
@@ -36,57 +50,102 @@ export function Profile() {
   function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
     setOption(optionSelected);
   }
-  
-  
+
   return (
-    <Container>
-      <Header>
-      <StatusBar 
-            barStyle='light-content'
-            translucent
-            backgroundColor='transparent'
-        />
-        <HeaderTop>
-          <BackButton 
-            color={theme.colors.shape} 
-            onPress={handleBack} 
-          />
-          <HeaderTitle>Editar Perfil</HeaderTitle>
-          <LogoutButton onPress={handleSinOut} >
-            <Feather
-              name="power" 
-              size={24} 
-              color={theme.colors.shape} />  
-          </LogoutButton>
-        </HeaderTop>
+    <KeyboardAvoidingView behavior='position' enabled>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Header>
+            <StatusBar
+              barStyle='light-content'
+              translucent
+              backgroundColor='transparent'
+            />
+            <HeaderTop>
+              <BackButton
+                color={theme.colors.shape}
+                onPress={handleBack}
+              />
+              <HeaderTitle>Editar Perfil</HeaderTitle>
+              <LogoutButton onPress={handleSinOut} >
+                <Feather
+                  name="power"
+                  size={24}
+                  color={theme.colors.shape} />
+              </LogoutButton>
+            </HeaderTop>
 
-        <PhotoContainer>
-          <Photo source={{ uri:'https://github.com/lucasjunior24.png' }} />
-          <PhotoButton onPress={() => {}}>
-            <Feather 
-              name="camera"
-              size={24}
-              color={theme.colors.shape} />
-          </PhotoButton>
-        </PhotoContainer>
-      </Header>
+            <PhotoContainer>
+              <Photo source={{ uri: 'https://github.com/lucasjunior24.png' }} />
+              <PhotoButton onPress={() => { }}>
+                <Feather
+                  name="camera"
+                  size={24}
+                  color={theme.colors.shape} />
+              </PhotoButton>
+            </PhotoContainer>
+          </Header>
 
-      <Content>
-        <Options>
-          <Option 
-            active={option === 'dataEdit'}
-            onPress={() => handleOptionChange('dataEdit')}
-          >
-            <OptionTitle active={option === 'dataEdit'}>Dados</OptionTitle>
-          </Option>
-          <Option 
-            active={option === 'passwordEdit'}
-            onPress={() => handleOptionChange('passwordEdit')}
-          >
-            <OptionTitle active={option === 'passwordEdit'}>Trocar senha</OptionTitle>
-          </Option>
-        </Options>
-      </Content>
-    </Container>
+          <Content style={{ marginBottom: useBottomTabBarHeight() }}>
+            <Options>
+              <Option
+                active={option === 'dataEdit'}
+                onPress={() => handleOptionChange('dataEdit')}
+              >
+                <OptionTitle active={option === 'dataEdit'}>Dados</OptionTitle>
+              </Option>
+              <Option
+                active={option === 'passwordEdit'}
+                onPress={() => handleOptionChange('passwordEdit')}
+              >
+                <OptionTitle active={option === 'passwordEdit'}>Trocar senha</OptionTitle>
+              </Option>
+            </Options>
+
+            {
+              option === 'dataEdit' ?
+              <Section>
+                <Input
+                  iconName='user'
+                  placeholder='Nome'
+                  autoCorrect={false}
+                  defaultValue={user.name}
+                />
+                <Input
+                  iconName='mail'
+                  editable={false}
+                  defaultValue={user.email}
+                />
+                <Input
+                  iconName='credit-card'
+                  placeholder='CNH'
+                  autoCorrect={false}
+                  keyboardType="numeric"
+                  defaultValue={user.driver_license}
+                />
+              </Section>
+              :
+              <Section>
+                <PasswordInput
+                  iconName='lock'
+                  placeholder='Senha atual'
+                />
+
+                <PasswordInput
+                  iconName='lock'
+                  placeholder='Nova senha'
+                />
+
+                <PasswordInput
+                  iconName='lock'
+                  placeholder='Repetir nova senha'
+                />
+              </Section>
+            }
+          </Content>
+        </Container>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+
   );
 }

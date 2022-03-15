@@ -8,16 +8,15 @@ interface OptionProps {
 }
 
 export const Container = styled.View`
-    flex: 1;
-    background-color: ${({ theme }) => theme.colors.background_primary};
+  background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 export const Header = styled.View`
-    width: 100%;
-    height: 227px;
-    background-color: ${({ theme }) => theme.colors.header};
+  width: 100%;
+  height: 227px;
+  background-color: ${({ theme }) => theme.colors.header};
 
-    padding: 0 24px;
-    align-items: center;
+  padding: 0 24px;
+  align-items: center;
 `;
 
 export const HeaderTop = styled.View`
@@ -69,7 +68,6 @@ export const PhotoButton = styled(RectButton)`
 `;
 
 export const Content = styled.View`
-  flex: 1;
   padding: 0 24px;
 
   margin-top: 122px;
@@ -102,3 +100,5 @@ export const OptionTitle = styled.Text<OptionProps>`
   color: ${({ theme, active }) => 
    active ? theme.colors.header : theme.colors.text_detail};
 `;
+
+export const Section = styled.View``;
