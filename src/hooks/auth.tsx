@@ -29,6 +29,7 @@ interface SignInCredentials {
 interface AuthContextData { 
   user: User;
   signIn: (credentials: SignInCredentials) => Promise<void>; 
+  signOut: () => void;
 }
 
 interface AuthProviderProps { 
@@ -53,11 +54,16 @@ function AuthProvider({ children } : AuthProviderProps) {
       setData({ token, user });
   }
 
+  function signOut() {
+    setData({} as AuthState);
+  }
+
   return (
     <AuthContext.Provider 
       value={{
         user: data.user,
-        signIn
+        signIn,
+        signOut
       }}
     >
       {children}

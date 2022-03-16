@@ -34,7 +34,7 @@ import {
 } from './styles';
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
@@ -60,10 +60,6 @@ export function Profile() {
     if(result.uri) setAvatar(result.uri);
   }
 
-  function handleSingOut() {
-    navigation.goBack();
-  }
-
   function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
     setOption(optionSelected);
   }
@@ -84,7 +80,7 @@ export function Profile() {
                 onPress={handleBack}
               />
               <HeaderTitle>Editar Perfil</HeaderTitle>
-              <LogoutButton onPress={handleSingOut} >
+              <LogoutButton onPress={signOut} >
                 <Feather
                   name="power"
                   size={24}
