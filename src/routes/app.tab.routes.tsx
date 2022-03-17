@@ -8,7 +8,6 @@ import PeopleSvg from '../assets/people.svg';
 import { Platform } from 'react-native';
 
 import { AppStackRoutes } from './app.stack.routes';
-import { Home } from '../screens/Home';
 import { MyCars } from '../screens/MyCars';
 import { Profile } from '../screens/Profile';
 

@@ -58,6 +58,10 @@ function AuthProvider({ children } : AuthProviderProps) {
     setData({} as AuthState);
   }
 
+  async function UpdatedUser(user: User) {
+    
+}
+
   return (
     <AuthContext.Provider 
       value={{
