@@ -1,4 +1,4 @@
-package com.cliteste;
+package com.main;
 import expo.modules.ReactActivityDelegateWrapper;
 import com.facebook.react.ReactActivityDelegate;
 
@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "cliteste";
+    return "main";
   }
 
   @Override
